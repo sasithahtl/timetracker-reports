@@ -1,0 +1,11 @@
+mysqli://sbosdevlk_timetracker:Xi4Kkc.Ya;[VGqWA@localhost/sbosdevlk_timetracker?charset=utf8mb4
+Access Hosts: 155.254.26.68
+Access Port: 3306
+Access User: sbosdevlk_timetracker
+Access Password: Xi4Kkc.Ya;[VGqWA
+Access Database: sbosdevlk_timetracker
+Access Charset: utf8mb4
+Access Collation: utf8mb4_unicode_ci
+Access Engine: InnoDB
+Access Row Format: Dynamic
+Access Row Format: Dynamic
