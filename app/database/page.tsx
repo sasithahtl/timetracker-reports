@@ -191,8 +191,11 @@ export default function DatabasePage() {
 
   const generatePDF = async () => {
     try {
+      // Dynamic imports for client-side PDF generation
+      const jsPDF = (await import('jspdf')).default;
+      const html2canvas = (await import('html2canvas')).default;
+
       // Transform database entries to match the expected format
-      // In generatePDF, pass the selected client name as the 'client' property in the data object
       const clientName = selectedClient ? (clients.find(c => String(c.id) === selectedClient)?.name || '') : '';
       const transformedData = {
         client: clientName,
@@ -210,7 +213,7 @@ export default function DatabasePage() {
         }))
       };
 
-      // In generatePDF, build grouping string based on dropdowns
+      // Build grouping string based on dropdowns
       const buildGrouping = () => {
         const g1 = groupBy1 !== 'no_grouping' ? groupBy1 : null;
         const g2 = groupBy2 !== 'no_grouping' && groupBy2 !== groupBy1 ? groupBy2 : null;
@@ -218,6 +221,7 @@ export default function DatabasePage() {
         return [g1, g2, g3].filter(Boolean).join(',');
       };
 
+      // Get HTML from server
       const response = await fetch('/api/generate-pdf', {
         method: 'POST',
         headers: {
@@ -226,24 +230,61 @@ export default function DatabasePage() {
         body: JSON.stringify({
           data: transformedData,
           grouping: buildGrouping() || 'none',
-          totalsOnly: totalsOnly, // Pass the totals only flag
+          totalsOnly: totalsOnly,
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to generate PDF');
+        throw new Error('Failed to generate HTML');
       }
 
-      // Create blob and download
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `database-timesheet-${new Date().toISOString().split('T')[0]}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      const { html, filename } = await response.json();
+
+      // Create temporary element to render HTML
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      tempDiv.style.position = 'absolute';
+      tempDiv.style.left = '-9999px';
+      tempDiv.style.top = '-9999px';
+      tempDiv.style.width = '210mm'; // A4 width
+      document.body.appendChild(tempDiv);
+
+      try {
+        // Convert HTML to canvas
+        const canvas = await html2canvas(tempDiv, {
+          scale: 2, // Higher quality
+          useCORS: true,
+          allowTaint: true,
+        });
+
+        // Create PDF
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgData = canvas.toDataURL('image/png');
+        
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 295; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
+
+        // Add first page
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        // Add additional pages if needed
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+
+        // Download PDF
+        pdf.save(filename || `database-timesheet-${new Date().toISOString().split('T')[0]}.pdf`);
+      } finally {
+        // Clean up
+        document.body.removeChild(tempDiv);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to generate PDF');
     }

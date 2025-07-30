@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
+// Remove puppeteer import - no longer needed
 
 interface TimeEntry {
   date: string;
@@ -45,37 +45,15 @@ export async function POST(request: NextRequest) {
 
     const htmlContent = generateTimesheetHTML(data, hierarchicalData, totalsOnly);
 
-    // Launch Puppeteer
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    // Return HTML content for client-side PDF generation
+    return NextResponse.json({ 
+      html: htmlContent,
+      filename: `timesheet-report-${new Date().toISOString().split('T')[0]}.pdf`
     });
 
-    const page = await browser.newPage();
-    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-    
-    const pdf = await page.pdf({
-      format: 'A4',
-      printBackground: true,
-      margin: {
-        top: '20mm',
-        right: '15mm',
-        bottom: '20mm',
-        left: '15mm'
-      }
-    });
-
-    await browser.close();
-
-    return new NextResponse(pdf, {
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="timesheet-report-${new Date().toISOString().split('T')[0]}.pdf"`,
-      },
-    });
   } catch (error) {
-    console.error('Error generating PDF:', error);
-    return NextResponse.json({ error: 'Failed to generate PDF' }, { status: 500 });
+    console.error('Error generating HTML:', error);
+    return NextResponse.json({ error: 'Failed to generate HTML' }, { status: 500 });
   }
 }
 

@@ -13,7 +13,7 @@ app.prepare().then(() => {
   createServer((req, res) => {
     const parsedUrl = parse(req.url, true);
     handle(req, res, parsedUrl);
-  }).listen(process.env.PORT || 3000, () => {
+  }).listen(process.env.PORT || 3009, () => {
     console.log('> Ready on port', process.env.PORT || 3000);
   });
 });
