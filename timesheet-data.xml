@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<row>
+	<date><![CDATA[2025-07-01]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4813]]></time_field_1307>
+	<duration><![CDATA[2.00]]></duration>
+	<note><![CDATA[Warrantable Order Validation Awnings 
+- Check Measure and SABS  
+- JS Unifying FA Extreme product]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-01]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-6]]></time_field_1307>
+	<duration><![CDATA[2.00]]></duration>
+	<note><![CDATA[Downloading quotes
+ - Checking doc generator configurations]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-01]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-3]]></time_field_1307>
+	<duration><![CDATA[2.00]]></duration>
+	<note><![CDATA[Merge Installer app changes to HTML app 
+- Fixing Android configurations]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-02]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4935]]></time_field_1307>
+	<duration><![CDATA[1.00]]></duration>
+	<note><![CDATA[Payment History screen]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-02]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4934]]></time_field_1307>
+	<duration><![CDATA[1.00]]></duration>
+	<note><![CDATA[Zipscreen Face Fix Default]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-02]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4933]]></time_field_1307>
+	<duration><![CDATA[3.00]]></duration>
+	<note><![CDATA[SABS portal changes]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-02]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4932]]></time_field_1307>
+	<duration><![CDATA[0.50]]></duration>
+	<note><![CDATA[Order entry bugs]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-02]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4931]]></time_field_1307>
+	<duration><![CDATA[0.50]]></duration>
+	<note><![CDATA[RB motor tails disabled when control is motor]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-02]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4930]]></time_field_1307>
+	<duration><![CDATA[1.00]]></duration>
+	<note><![CDATA[Curtain motor order entry issue]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-03]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-3]]></time_field_1307>
+	<duration><![CDATA[8.00]]></duration>
+	<note><![CDATA[Merge Installer app changes to HTML app 
+- Testing 
+- Fixing Android configurations]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-04]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[4926]]></time_field_1307>
+	<duration><![CDATA[3.00]]></duration>
+	<note><![CDATA[Install bucket reporting outputs | merge into live server]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-04]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-15]]></time_field_1307>
+	<duration><![CDATA[3.00]]></duration>
+	<note><![CDATA[Recalculate the Original Task Time for split installations]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-04]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-1]]></time_field_1307>
+	<duration><![CDATA[1.00]]></duration>
+	<note><![CDATA[Product return location in Recy screen]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-05]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-12]]></time_field_1307>
+	<duration><![CDATA[1.00]]></duration>
+	<note><![CDATA[Install bucket rebook errors]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-05]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-13]]></time_field_1307>
+	<duration><![CDATA[0.50]]></duration>
+	<note><![CDATA[Feed back on Automagic/Defaulting]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-05]]></date>
+	<user><![CDATA[Amila Madushanka]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-7]]></time_field_1307>
+	<duration><![CDATA[2.50]]></duration>
+	<note><![CDATA[Install App/recy improvements - Adding Flagged Job Screen]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-01]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[1.00]]></duration>
+	<note><![CDATA[Meeting with Rheeka and peejay for discussion about KIOS]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-03]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-1]]></time_field_1307>
+	<duration><![CDATA[5.50]]></duration>
+	<note><![CDATA[User roles with section access management]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-04]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-1]]></time_field_1307>
+	<duration><![CDATA[5.00]]></duration>
+	<note><![CDATA[KIOS-1 | User roles with section access management]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-04]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-1]]></time_field_1307>
+	<duration><![CDATA[0.50]]></duration>
+	<note><![CDATA[KIOS-1 | User roles with section access management | some other features like disable sections]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-04]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-3]]></time_field_1307>
+	<duration><![CDATA[1.00]]></duration>
+	<note><![CDATA[KIOS-3 | Implement the MVP 1.0 | Analysing for implementation]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-07]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-5]]></time_field_1307>
+	<duration><![CDATA[1.25]]></duration>
+	<note><![CDATA[KIOS-5 | Rheeka as a new admin can not access to admin section issue]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-07]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-6]]></time_field_1307>
+	<duration><![CDATA[0.75]]></duration>
+	<note><![CDATA[KIOS-6 | it only shows home page link in the side bar]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-07]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-7]]></time_field_1307>
+	<duration><![CDATA[2.00]]></duration>
+	<note><![CDATA[KIOS-7 | Implement Reset password feature  correctly]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-07]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-8]]></time_field_1307>
+	<duration><![CDATA[1.25]]></duration>
+	<note><![CDATA[KIOS-8 | Add the option to set the LMS role during the user creation process | Filter by department, roles and lms roles in user mgt area | Redesigned mobile friendly page in user mgt area | Few issues in section access page]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-08]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[0.25]]></duration>
+	<note><![CDATA[Discussed with jonathon about KIOS requirements handling and about action level permission feature]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-08]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[0.75]]></duration>
+	<note><![CDATA[KIOS Meeting about issues and other changes regarding LMS and AI]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-08]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-9]]></time_field_1307>
+	<duration><![CDATA[0.50]]></duration>
+	<note><![CDATA[KIOS -9 | Analysed Role-Based Access Control Matrix]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-08]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-10]]></time_field_1307>
+	<duration><![CDATA[3.00]]></duration>
+	<note><![CDATA[KIOS-10 | User Management Feedback and Suggestions | issues in the video and found issues while testing]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-08]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[KIOS Stanbond]]></project>
+	<time_field_1307><![CDATA[KIOS-10]]></time_field_1307>
+	<duration><![CDATA[2.25]]></duration>
+	<note><![CDATA[KIOS-10 | Defining specific user actions permissions (crud operations for different user roles) for admins and super admins]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-01]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[0.25]]></duration>
+	<note><![CDATA[Providing support for task troubleshooting, issue management, and collaborative problem-solving with the development team.]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-01]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[SBOS-2]]></time_field_1307>
+	<duration><![CDATA[3.50]]></duration>
+	<note><![CDATA[SBOS-2 | Set up new bitbucket with repositories]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-03]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[0.50]]></duration>
+	<note><![CDATA[Fix the heic converter issue in recy image]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-04]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[0.75]]></duration>
+	<note><![CDATA[Providing support for task troubleshooting, issue management, and collaborative problem-solving with the development team.]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-07]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[2.00]]></duration>
+	<note><![CDATA[Providing support for task troubleshooting, issue management, and collaborative problem-solving with the development team.]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-08]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[0.25]]></duration>
+	<note><![CDATA[Discussed with jonathon about some issues and stuff about scorpio sbos and stanbond sbos]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-08]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[SBOS (Stan Bond)]]></project>
+	<time_field_1307><![CDATA[]]></time_field_1307>
+	<duration><![CDATA[0.25]]></duration>
+	<note><![CDATA[Providing support for task troubleshooting, issue management, and collaborative problem-solving with the development team.]]></note>
+</row>
+<row>
+	<date><![CDATA[2025-07-01]]></date>
+	<user><![CDATA[Sasitha Asaranga]]></user>
+	<client><![CDATA[Stan Bond]]></client>
+	<project><![CDATA[Sbos installer app]]></project>
+	<time_field_1307><![CDATA[SBOS-1]]></time_field_1307>
+	<duration><![CDATA[3.00]]></duration>
+	<note><![CDATA[SBOS-1 | Installer app recy issue and product return location]]></note>
+</row>
+</rows> 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+  <name>TechCorp Solutions</name>
+  <founded>2015</founded>
+  <industry>Technology</industry>
+  <employees>
+    <employee>
+      <id>001</id>
+      <name>John Smith</name>
+      <position>Software Engineer</position>
+      <department>Engineering</department>
+      <salary>75000</salary>
+      <hire_date>2020-03-15</hire_date>
+    </employee>
+    <employee>
+      <id>002</id>
+      <name>Sarah Johnson</name>
+      <position>Product Manager</position>
+      <department>Product</department>
+      <salary>85000</salary>
+      <hire_date>2019-07-22</hire_date>
+    </employee>
+    <employee>
+      <id>003</id>
+      <name>Mike Davis</name>
+      <position>UX Designer</position>
+      <department>Design</department>
+      <salary>70000</salary>
+      <hire_date>2021-01-10</hire_date>
+    </employee>
+  </employees>
+  <projects>
+    <project>
+      <name>Mobile App Redesign</name>
+      <status>In Progress</status>
+      <budget>50000</budget>
+      <deadline>2024-06-30</deadline>
+    </project>
+    <project>
+      <name>Cloud Migration</name>
+      <status>Completed</status>
+      <budget>100000</budget>
+      <deadline>2023-12-15</deadline>
+    </project>
+  </projects>
+  <contact>
+    <email>info@techcorp.com</email>
+    <phone>+1-555-0123</phone>
+    <address>
+      <street>123 Tech Street</street>
+      <city>San Francisco</city>
+      <state>CA</state>
+      <zip>94105</zip>
+    </address>
+  </contact>
+</company> 
