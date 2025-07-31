@@ -353,7 +353,7 @@ function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, H
         .entries-table td {
           padding: 8px 6px;
           border-bottom: 1px solid #f1f5f9;
-          font-size: 0.98rem;
+          font-size: 12px;
           color: #475569;
         }
         .entries-table tr:hover {

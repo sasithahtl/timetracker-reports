@@ -252,7 +252,7 @@ export default function DatabasePage() {
       try {
         // Convert HTML to canvas
         const canvas = await html2canvas(tempDiv, {
-          scale: 2, // Higher quality
+          scale: 1, // Higher quality
           useCORS: true,
           allowTaint: true,
         });
