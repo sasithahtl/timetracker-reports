@@ -207,6 +207,8 @@ export default function DatabasePage() {
           project: entry.project_name || 'No Project',
           // Include task number with name
           task: entry.task_id ? `#${entry.task_id} ${entry.task_name || ''}`.trim() : (entry.task_name || 'No Task'),
+          // Add task_number field for time_field_2 grouping
+          task_number: entry.task_number || (entry.task_id ? `#${entry.task_id}` : ''),
           time_field_1307: entry.start || '',
           duration: entry.duration || '0',
           note: entry.comment || ''
@@ -231,6 +233,10 @@ export default function DatabasePage() {
           data: transformedData,
           grouping: buildGrouping() || 'none',
           totalsOnly: totalsOnly,
+          dateRange: {
+            from: dateFrom,
+            to: dateTo
+          },
         }),
       });
 

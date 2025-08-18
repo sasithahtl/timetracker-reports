@@ -7,6 +7,7 @@ interface TimeEntry {
   client: string;
   project: string;
   task: string;
+  task_number?: string;
   time_field_1307: string;
   duration: string;
   note: string;
@@ -17,7 +18,7 @@ interface ParsedData {
   entries: TimeEntry[];
 }
 
-type GroupingOption = 'none' | 'date' | 'user' | 'client' | 'project' | 'task';
+type GroupingOption = 'none' | 'date' | 'user' | 'client' | 'project' | 'task' | 'time_field_2';
 
 interface HierarchicalGroup {
   key: string;
@@ -28,7 +29,12 @@ interface HierarchicalGroup {
 
 export async function POST(request: NextRequest) {
   try {
-    const { data, grouping = 'date', totalsOnly = false }: { data: ParsedData; grouping: string; totalsOnly?: boolean } = await request.json();
+    const { data, grouping = 'date', totalsOnly = false, dateRange }: { 
+      data: ParsedData; 
+      grouping: string; 
+      totalsOnly?: boolean;
+      dateRange?: { from: string; to: string };
+    } = await request.json();
 
     if (!data || !data.entries || !Array.isArray(data.entries)) {
       return NextResponse.json({ error: 'Invalid data format' }, { status: 400 });
@@ -43,7 +49,7 @@ export async function POST(request: NextRequest) {
     // Create hierarchical grouping structure
     const hierarchicalData = buildHierarchicalGrouping(sortedEntries, groupingLevels);
 
-    const htmlContent = generateTimesheetHTML(data, hierarchicalData, totalsOnly);
+    const htmlContent = generateTimesheetHTML(data, hierarchicalData, totalsOnly, dateRange);
 
     // Return HTML content for client-side PDF generation
     return NextResponse.json({ 
@@ -109,7 +115,18 @@ function getGroupValue(entry: TimeEntry, groupBy: GroupingOption): string {
     case 'user': return entry.user;
     case 'client': return entry.client;
     case 'project': return entry.project;
-    case 'task': return entry.task || 'No Task';
+    case 'task':
+      return entry.task || 'No Task';
+    case 'time_field_2': {
+      // Use task_number field if available, otherwise derive from task string
+      if (entry.task_number) {
+        return entry.task_number;
+      }
+      // Fallback: derive Task/Bug Number from the task string (e.g., "#1234 Fix bug")
+      const value = entry.task || '';
+      const match = value.match(/^#\d+/);
+      return match ? match[0] : (value ? value.split(' ')[0] : '-');
+    }
     default: return '';
   }
 }
@@ -139,54 +156,57 @@ function renderHierarchicalGroups(groups: Map<string, HierarchicalGroup>, totals
     const allEntriesInGroup = getAllEntriesFromGroup(group);
     const groupDuration = sumDurations(allEntriesInGroup);
     const indentClass = level > 0 ? `style="margin-left: ${level * 20}px;"` : '';
-    
+    const isLeaf = group.subGroups.size === 0;
+
     let html = `
-      <div class="group-header" ${indentClass}>
+      <div class="group-header${level === 0 ? ' page-break' : ''}" ${indentClass}>
         <span>${groupKey || 'All Entries'}</span>
         <span class="group-stats">${allEntriesInGroup.length} entries • ${groupDuration} hours</span>
       </div>
     `;
-    
-    // If there are subgroups, render them recursively
-    if (group.subGroups.size > 0) {
+
+    if (!isLeaf) {
+      // Nested group: render children recursively
       html += renderHierarchicalGroups(group.subGroups, totalsOnly, level + 1);
-    } else if (group.entries.length > 0 && !totalsOnly) {
-      // This is a leaf group with actual entries, render the table
+      // Subtotal for nested group (always visible)
       html += `
-        <table class="entries-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>User</th>
-              <th>Client</th>
-              <th>Project</th>
-              <th>Task</th>
-              <th>Duration</th>
-              <th>Note</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${group.entries.map(entry => `
-              <tr>
-                <td>${entry.date}</td>
-                <td>${entry.user}</td>
-                <td>${entry.client}</td>
-                <td>${entry.project}</td>
-                <td>${entry.task || '-'}</td>
-                <td class="duration-cell">${formatDuration(entry.duration)}</td>
-                <td class="note-cell" title="${entry.note || ''}">${entry.note || '-'}</td>
-              </tr>
-            `).join('')}
-            <tr class="total-row">
-              <td colspan="5" style="text-align:right;">Subtotal</td>
-              <td class="duration-cell">${sumDurations(group.entries)}</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="group-subtotal" ${indentClass}>
+          <div>Subtotal ${groupKey || 'All Entries'}</div>
+          <div class="duration">${groupDuration}</div>
+        </div>
       `;
+    } else {
+      // Leaf group
+      if (!totalsOnly) {
+        html += `
+          <table class="entries-table">
+            <tbody>
+              ${group.entries.map(entry => `
+                <tr>
+                  <td>${entry.date}</td>
+                  <td>${entry.user}</td>
+                  <td>${entry.client}</td>
+                  <td>${entry.project}</td>
+                  <td>${entry.task || '-'}</td>
+                  <td class="duration-cell">${formatDuration(entry.duration)}</td>
+                  <td class="note-cell" title="${entry.note || ''}">${entry.note || '-'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+      // When totalsOnly, still show subtotal like the UI (header + subtotal, no entries)
+      if (totalsOnly) {
+        html += `
+          <div class="group-subtotal" ${indentClass}>
+            <div>Subtotal ${groupKey || 'All Entries'}</div>
+            <div class="duration">${groupDuration}</div>
+          </div>
+        `;
+      }
     }
-    
+
     return html;
   }).join('');
 }
@@ -202,7 +222,7 @@ function getAllEntriesFromGroup(group: HierarchicalGroup): TimeEntry[] {
   return allEntries;
 }
 
-function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, HierarchicalGroup>, totalsOnly: boolean = false): string {
+function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, HierarchicalGroup>, totalsOnly: boolean = false, dateRange?: { from: string; to: string }): string {
   const totalDuration = sumDurations(data.entries);
   const totalEntries = data.entries.length;
   const uniqueUsers = [...new Set(data.entries.map(entry => entry.user))];
@@ -356,6 +376,22 @@ function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, H
           font-size: 12px;
           color: #475569;
         }
+        .group-subtotal {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #3b82f6;
+          padding: 10px 14px;
+          margin: 0 0 8px 0;
+          font-weight: 700;
+          color: #1e40af;
+          border-radius: 0 8px 8px 0;
+        }
+        .group-subtotal .duration {
+          color: #059669;
+        }
         .entries-table tr:hover {
           background-color: #f8fafc;
         }
@@ -381,6 +417,7 @@ function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, H
           color: #1e40af;
           margin-bottom: 0.5rem;
           letter-spacing: 1px;
+          page-break-before: always;
         }
         .client-subheading {
           font-size: 1.25rem;
@@ -395,13 +432,27 @@ function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, H
         }
         .group-header[style*="margin-left"] {
           background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
-          font-size: 1rem;
-          margin-top: 12px;
+          font-size: 0.9rem;
+          margin-top: 8px;
+          padding: 8px 16px;
         }
         .group-header[style*="margin-left: 40px"] {
           background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%);
-          font-size: 0.95rem;
-          margin-top: 8px;
+          font-size: 0.85rem;
+          margin-top: 6px;
+          padding: 6px 14px;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+        .group-header {
+          page-break-inside: avoid;
+        }
+        .entries-table {
+          page-break-inside: avoid;
+        }
+        .group-subtotal {
+          page-break-inside: avoid;
         }
       </style>
     </head>
@@ -410,6 +461,7 @@ function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, H
         <div class="header">
           <div class="main-title">Timesheet Report${totalsOnly ? ' - Summary View' : ''}</div>
           <div class="client-subheading">${data.client || 'No Client'}</div>
+          ${dateRange ? `<div style="color: #64748b; font-size: 1rem; margin-top: 8px; font-weight: 500;">Period: ${dateRange.from} to ${dateRange.to}</div>` : ''}
           ${totalsOnly ? '<div style="color: #6366f1; font-size: 0.9rem; margin-top: 8px;">This report shows group totals only. Individual entries are hidden.</div>' : ''}
         </div>
 
@@ -448,6 +500,21 @@ function generateTimesheetHTML(data: ParsedData, hierarchicalData: Map<string, H
         </div>
 
         <div class="entries-section">
+          ${!totalsOnly ? `
+            <table class="entries-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>User</th>
+                  <th>Client</th>
+                  <th>Project</th>
+                  <th>Task / Bug Number</th>
+                  <th>Duration</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+            </table>
+          ` : ''}
           ${renderHierarchicalGroups(hierarchicalData, totalsOnly)}
         </div>
       </div>
