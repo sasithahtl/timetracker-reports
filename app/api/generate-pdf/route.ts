@@ -51,10 +51,15 @@ export async function POST(request: NextRequest) {
 
     const htmlContent = generateTimesheetHTML(data, hierarchicalData, totalsOnly, dateRange);
 
+    // Generate filename with client name and date range
+    const clientName = data.client || 'No-Client';
+    const sanitizedClientName = clientName.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '-');
+    const dateRangeStr = dateRange ? `${dateRange.from}-to-${dateRange.to}` : new Date().toISOString().split('T')[0];
+    
     // Return HTML content for client-side PDF generation
     return NextResponse.json({ 
       html: htmlContent,
-      filename: `timesheet-report-${new Date().toISOString().split('T')[0]}.pdf`
+      filename: `timesheet-${sanitizedClientName}-${dateRangeStr}.pdf`
     });
 
   } catch (error) {
@@ -187,7 +192,7 @@ function renderHierarchicalGroups(groups: Map<string, HierarchicalGroup>, totals
                   <td>${entry.user}</td>
                   <td>${entry.client}</td>
                   <td>${entry.project}</td>
-                  <td>${entry.task || '-'}</td>
+                  <td>${entry.task_number || entry.task || ''}</td>
                   <td class="duration-cell">${formatDuration(entry.duration)}</td>
                   <td class="note-cell" title="${entry.note || ''}">${entry.note || '-'}</td>
                 </tr>
