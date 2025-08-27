@@ -44,13 +44,13 @@ export default function TeamSummaryPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [dateFrom, setDateFrom] = useState<string>(() => {
-    const now = new Date();
-    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+    const date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    const firstDay = new Date(y, m, 1);
     return firstDay.toISOString().split('T')[0];
   });
   const [dateTo, setDateTo] = useState<string>(() => {
-    const now = new Date();
-    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    const lastDay = new Date(y, m + 1, 0);
     return lastDay.toISOString().split('T')[0];
   });
 

@@ -59,13 +59,13 @@ export default function DatabasePage() {
   const [selectedClient, setSelectedClient] = useState<string>('');
   // Default date range - will be updated with actual database range
   const [dateFrom, setDateFrom] = useState<string>(() => {
-    const now = new Date();
-    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+    const date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    const firstDay = new Date(y, m, 1);
     return firstDay.toISOString().split('T')[0];
   });
   const [dateTo, setDateTo] = useState<string>(() => {
-    const now = new Date();
-    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    const lastDay = new Date(y, m + 1, 0);
     return lastDay.toISOString().split('T')[0];
   });
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
@@ -191,9 +191,9 @@ export default function DatabasePage() {
     setSelectedTask('');
     setSelectedClient('');
     // Reset to current month
-    const now = new Date();
-    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
-    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    const firstDay = new Date(y, m, 1);
+    const lastDay = new Date(y, m + 1, 0);
     setDateFrom(firstDay.toISOString().split('T')[0]);
     setDateTo(lastDay.toISOString().split('T')[0]);
     setBillableOnly(false);
