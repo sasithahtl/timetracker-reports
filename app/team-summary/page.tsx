@@ -43,8 +43,16 @@ export default function TeamSummaryPage() {
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dateFrom, setDateFrom] = useState<string>('2025-07-01');
-  const [dateTo, setDateTo] = useState<string>('2025-07-31');
+  const [dateFrom, setDateFrom] = useState<string>(() => {
+    const now = new Date();
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+    return firstDay.toISOString().split('T')[0];
+  });
+  const [dateTo, setDateTo] = useState<string>(() => {
+    const now = new Date();
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    return lastDay.toISOString().split('T')[0];
+  });
 
   useEffect(() => {
     loadTeamSummary();
