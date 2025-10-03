@@ -343,6 +343,7 @@ const perUserCost = useMemo(() => {
 									<th className="px-4 py-2 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Select</th>
 									<th className="px-4 py-2 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">User</th>
 									<th className="px-4 py-2 text-right text-xs font-bold text-slate-600 uppercase tracking-wider">Income Hours</th>
+									<th className="px-4 py-2 text-right text-xs font-bold text-slate-600 uppercase tracking-wider">Cost Hours</th>
 									<th className="px-4 py-2 text-right text-xs font-bold text-slate-600 uppercase tracking-wider">Cost Rate ($/hr)</th>
 									<th className="px-4 py-2 text-right text-xs font-bold text-slate-600 uppercase tracking-wider">Cost ($)</th>
 								</tr>
@@ -350,14 +351,16 @@ const perUserCost = useMemo(() => {
 							<tbody className="divide-y divide-slate-100">
 								{allUsers.map((u) => {
 									const selected = selectedUsers.includes(u.id);
-									const hours = perUserIncomeHours[u.id] || 0;
+									const incomeHours = perUserIncomeHours[u.id] || 0;
+									const costHours = (perUserCostHours as Record<number, number>)[u.id] || 0;
 									const rate = userRates[u.id] || 0;
-									const cost = hours * rate;
+									const cost = costHours * rate;
 									return (
 										<tr key={u.id} className={selected ? 'bg-white' : 'bg-slate-50'}>
 											<td className="px-4 py-2"><input type="checkbox" checked={selected} onChange={() => toggleUser(u.id)} /></td>
 											<td className="px-4 py-2 text-sm text-slate-800">{u.name}</td>
-											<td className="px-4 py-2 text-right text-sm text-slate-800">{hours.toFixed(2)}</td>
+											<td className="px-4 py-2 text-right text-sm text-slate-800">{incomeHours.toFixed(2)}</td>
+											<td className="px-4 py-2 text-right text-sm text-slate-800">{costHours.toFixed(2)}</td>
 											<td className="px-4 py-2 text-right">
 												<input
 													type="number"
