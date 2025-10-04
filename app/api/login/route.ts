@@ -16,12 +16,10 @@ export async function POST(request: NextRequest) {
 
     const connection = await getConnection();
     try {
-      console.log(login, password);
       const [rows] = await connection.query(
         'SELECT id, login, name, role_id FROM tt_users WHERE login = ? AND password = MD5(?) AND status = 1 LIMIT 1',
         [login, password]
       );
-      console.log(rows);
       const user = Array.isArray(rows) && rows.length > 0 ? (rows[0] as { id: number; login: string; name: string; role_id: number | null }) : null;
       if (!user) {
         return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });

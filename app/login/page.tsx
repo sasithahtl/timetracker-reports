@@ -31,7 +31,11 @@ function LoginForm() {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || 'Login failed');
       }
-      router.replace(redirectTo);
+      if (typeof window !== 'undefined') {
+        window.location.assign(redirectTo || '/');
+      } else {
+        router.replace(redirectTo);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
