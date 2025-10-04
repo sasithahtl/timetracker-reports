@@ -3,6 +3,7 @@
 import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { useEffect as useReactEffect } from 'react';
 
 function LoginForm() {
   const router = useRouter();
@@ -12,6 +13,12 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useReactEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.title = 'Timesheet for SBOS Dev Team - Sign In';
+    }
+  }, []);
 
   useEffect(() => {
     setError(null);
@@ -47,8 +54,8 @@ function LoginForm() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-6">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
         <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-slate-900">Sign in</h1>
-          <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm">Home</Link>
+          <h1 className="text-2xl font-bold text-slate-900">Timesheet for SBOS Dev Team</h1>
+          {/* <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm">Home</Link> */}
         </div>
         {error && (
           <div className="mb-4 rounded-md border border-red-200 bg-red-50 p-3 text-red-800 text-sm">
