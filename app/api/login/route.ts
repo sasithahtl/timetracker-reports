@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getConnection } from '../../../lib/database';
 import { createSessionToken, getSessionSecret } from '../../../lib/auth';
-import { error } from 'console';
 
 export const runtime = 'nodejs';
 
