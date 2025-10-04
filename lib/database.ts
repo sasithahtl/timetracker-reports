@@ -112,7 +112,7 @@ export async function getUsers() {
     console.log('Executing getUsers query');
     const [rows] = await connection.query(`
       SELECT * FROM tt_users 
-      WHERE status = 1 
+      WHERE status = 1 AND group_id = 1
       ORDER BY name
     `);
     console.log('getUsers query executed successfully');
@@ -244,7 +244,7 @@ export async function getTeamSummaryData(dateFrom: string, dateTo: string) {
     // Get all users
     const [users] = await connection.query(`
       SELECT id, login, name FROM tt_users 
-      WHERE status = 1 
+      WHERE status = 1 AND group_id = 1
       ORDER BY name
     `);
     

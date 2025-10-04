@@ -68,6 +68,8 @@ A sample XML file (`sample-data.xml`) is included in the project root for testin
 
 - `POST /api/parse-xml`: Parse uploaded XML files
 - `POST /api/generate-pdf`: Generate PDF from parsed data
+- `POST /api/login`: Authenticate user with legacy MD5-verified password, sets session cookie
+- `POST /api/logout`: Clear session cookie
 
 ## Project Structure
 
@@ -79,13 +81,22 @@ pdf-generator-app/
 │   │   │   └── route.ts          # XML parsing API
 │   │   └── generate-pdf/
 │   │       └── route.ts          # PDF generation API
+│   │   ├── login/
+│   │   │   └── route.ts          # Login API (MD5 legacy DB)
+│   │   └── logout/
+│   │       └── route.ts          # Logout API
 │   ├── upload/
 │   │   └── page.tsx              # Upload page component
+│   ├── login/
+│   │   └── page.tsx              # Login page
 │   ├── layout.tsx                # Root layout
 │   ├── page.tsx                  # Home page
 │   └── globals.css               # Global styles
 ├── public/                       # Static assets
 ├── sample-data.xml              # Sample XML file for testing
+├── middleware.ts                 # Route protection (requires session)
+├── lib/auth.ts                   # HMAC session utilities
+├── docs/AI_RULES.md              # AI rules and guidelines
 └── package.json
 ```
 
@@ -103,6 +114,7 @@ pdf-generator-app/
 - **Upload Page** (`app/upload/page.tsx`): Main interface for file upload and data display
 - **XML Parser** (`app/api/parse-xml/route.ts`): Handles XML file parsing using xml2js
 - **PDF Generator** (`app/api/generate-pdf/route.ts`): Generates PDF documents using Puppeteer
+- **Auth** (`app/api/login/route.ts`, `app/api/logout/route.ts`, `middleware.ts`): Session-based auth with legacy MD5 check
 
 ## Customization
 
@@ -140,3 +152,34 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Support
 
 For support or questions, please open an issue in the repository.
+
+
+pm2 start server.js --name timeshee-report
+
+## Authentication
+
+- This app requires authentication for all pages except `/login` and static assets.
+- Login uses a legacy compatibility check: `WHERE login = ? AND password = MD5(?) AND status = 1`.
+- On success, the server issues an HMAC-signed `session` cookie valid for 7 days.
+- Middleware enforces authentication and redirects unauthenticated users to `/login`.
+
+### Environment Variables
+
+Add to `.env.local` (see `env.example`):
+
+```
+DB_HOST=...
+DB_PORT=3306
+DB_USER=...
+DB_PASSWORD=...
+DB_NAME=...
+SESSION_SECRET=<openssl rand -base64 32>
+```
+
+### Security Note
+
+MD5 is weak and used here only for compatibility with the existing `tt_users` table. Plan to migrate to bcrypt/Argon2. A safe migration path is to rehash on successful login and gradually phase out MD5.
+
+## AI Rules
+
+See `docs/AI_RULES.md` for assistant guidelines, coding conventions, security practices, and documentation expectations.

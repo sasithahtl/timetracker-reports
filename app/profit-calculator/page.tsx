@@ -273,6 +273,7 @@ const perUserCost = useMemo(() => {
 						<Link href="/" className="text-blue-600 hover:text-blue-800 text-base font-medium">Back to Home</Link>
 						<h1 className="text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">Profit Calculator</h1>
 						<p className="mt-1 text-slate-600">Compute (AUD) $ income, costs, expenses and profit for a period</p>
+						<p className="mt-1 text-sm text-slate-500">Showing users in group: SBOS Developer Team</p>
 					</div>
 					<div>
 						<button

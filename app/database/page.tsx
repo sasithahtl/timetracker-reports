@@ -538,6 +538,7 @@ export default function DatabasePage() {
             </Link>
             <h1 className="text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">Database Timesheet Generator</h1>
             <p className="mt-1 text-lg text-slate-600 font-normal">Generate PDF reports directly from the MySQL database</p>
+            <p className="mt-1 text-sm text-slate-500">Showing users in group: SBOS Developer Team</p>
           </div>
         </div>
 

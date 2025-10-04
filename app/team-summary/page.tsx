@@ -220,6 +220,7 @@ export default function TeamSummaryPage() {
             </Link>
             <h1 className="text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">Team Summary Report</h1>
             <p className="mt-1 text-lg text-slate-600 font-normal">Overview of team productivity and client billing</p>
+            <p className="mt-1 text-sm text-slate-500">Showing users in group: SBOS Developer Team</p>
           </div>
         </div>
 
