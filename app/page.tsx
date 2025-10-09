@@ -36,15 +36,6 @@ export default function Home() {
               Team Summary
             </Link>
 
-            <Link
-              href="/profit-calculator"
-              className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-2.21 0-4 1.343-4 3s1.79 3 4 3 4 1.343 4 3m-4-9V4m0 14v2" />
-              </svg>
-              Profit Calculator
-            </Link>
           </div>
 
           {/* Optional utilities */}
@@ -57,6 +48,15 @@ export default function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3V4" />
               </svg>
               Import XML (optional)
+            </Link>
+          </div>
+
+          <div className="mt-1">
+            <Link
+              href="/profit-calculator"
+              className="text-sm text-gray-500 hover:text-gray-700 underline underline-offset-4"
+            >
+              Profit calculator
             </Link>
           </div>
 
