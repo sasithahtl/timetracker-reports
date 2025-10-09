@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
         'UPDATE tt_users SET password = MD5(?) WHERE id = ? AND password = MD5(?) AND status = 1',
         [newPassword, session.sub, currentPassword]
       );
-      const ok = typeof result === 'object' && result !== null && 'affectedRows' in result ? (result as any).affectedRows > 0 : false;
+      const ok = typeof result === 'object' && result !== null && 'affectedRows' in result ? (result as { affectedRows: number }).affectedRows > 0 : false;
       if (!ok) {
         return NextResponse.json({ error: 'Current password is incorrect' }, { status: 400 });
       }
